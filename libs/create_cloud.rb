@@ -20,12 +20,11 @@ class CreateCloud
     end
 
     def send_message_to_ticket driver, message, project_id, task_id, ticket_id, to_members_name = ["山田"]
-      # ticket_search_url = TICKET_SEARCH_PATTERN.gsub(":base_url", config["base_url"])
-      #   .gsub(":project_id", project_id.to_s)
-      #   .gsub(":task_id", task_id.to_s)
-      #   .gsub(":ticket_id", ticket_id.to_s)
+      ticket_search_url = TICKET_SEARCH_PATTERN.gsub(":base_url", config["base_url"])
+        .gsub(":project_id", project_id.to_s)
+        .gsub(":task_id", task_id.to_s)
+        .gsub(":ticket_id", ticket_id.to_s)
 
-      ticket_search_url = "https://membernew.createcloud.jp/projects/1716/2025/ticket"
       driver.get ticket_search_url
 
       chat_icon = driver.find_elements(:css, "#js_chat_ticket_#{ticket_id}").first

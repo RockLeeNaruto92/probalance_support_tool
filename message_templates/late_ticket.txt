@@ -1,6 +1,6 @@
 Hi :member_names
 
-Becase of :late_reason , this ticket will be lated for :late_hours hours.
+Becase of :late_reason , this ticket will be lated.
 The new expect PR Creation date is: :new_expect_pr_creation_date.
 
 Please confirm it.

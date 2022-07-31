@@ -7,7 +7,7 @@ class MessageGenerator
   class << self
     def generate type, params = {}
       content = File.open("./message_templates/#{type}.txt", "r"){|f| f.readlines.join("")}
-      
+
       case type
       when :late_ticket
         errors = validate_params_for_late_ticket params
@@ -19,11 +19,10 @@ class MessageGenerator
 
         return content.gsub(":member_names", params[:member_names])
           .gsub(":late_reason", params[:late_reason])
-          .gsub(":late_hours", params[:late_hours])
           .gsub(":new_expect_pr_creation_date", params[:new_expect_pr_creation_date])
 
       when :send_estimation
-        errors = validate_params_for_send_estimation
+        errors = validate_params_for_send_estimation params
 
         unless errors.empty?
           puts errors.join("\n") 
@@ -42,7 +41,6 @@ class MessageGenerator
       errors = []
       errors << "Must fill params[:member_names]" if params[:member_names] == nil
       errors << "Must fill params[:late_reason]" if params[:late_reason] == nil
-      errors << "Must fill params[:late_hours]" if params[:late_hours] == nil
       errors << "Must fill params[:new_expect_pr_creation_date]" if params[:new_expect_pr_creation_date] == nil
       errors
     end
