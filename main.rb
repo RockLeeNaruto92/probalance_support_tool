@@ -31,7 +31,7 @@ def process_for_1_row work_sheet, row, row_index, driver
     MessageGenerator.generate(:late_ticket, {
       member_names: to_members_name.map{|n| n + "さん"}.join(","),
       late_reason: late_reason,
-      new_expect_pr_creation_date: new_estimation_hours
+      new_expect_pr_creation_date: new_expect_pr_creation_date
     })
   when :send_estimation
     MessageGenerator.generate(:send_estimation, {
@@ -46,7 +46,7 @@ def process_for_1_row work_sheet, row, row_index, driver
   if confirm_send_message ticket_id, ticket_title, message, action_status
     CreateCloud.send_message_to_ticket driver, message, project_id,
       task_id, ticket_id, to_members_name
-    work_sheet[row_index + 1, 'H'.ord - 'A'.ord + 1] = "DONE"
+    work_sheet[row_index, 'H'.ord - 'A'.ord + 1] = "DONE"
     work_sheet.save
   end
 end
