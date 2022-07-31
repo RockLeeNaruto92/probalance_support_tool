@@ -1,4 +1,4 @@
 config/google_drive_config.json
 config/create_cloud.yaml
 config/sheet_config.yaml
-tmp
+tmp/*.log
